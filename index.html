@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SunCoffee: Кофейня в Белгороде, ТЦ «Солнечный»</title>
+  <meta name="description" content="Кофейня SunCoffee в Белгороде. Свежее зерно, авторские напитки и свежая выпечка. ТЦ «Солнечный», 1 этаж. Ежедневно с 10:00 до 21:00.">
+
+  <!-- Google Fonts: Cormorant Garamond & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Theme */
+    :root {
+      --bg: #FAF7F2;
+      --card: #F2ECE1;
+      --card-hover: #ECE4D7;
+      --text-main: #1F1B18;
+      --text-muted: #6E655F;
+      --accent: #C86D3B;
+      --accent-hover: #B55E2E;
+      --accent-soft: rgba(200, 109, 59, 0.08);
+      --border: rgba(31, 27, 24, 0.08);
+      --border-focus: rgba(200, 109, 59, 0.4);
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --container: 1080px;
+      --transition: 180ms ease-out;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--bg);
+      color: var(--text-main);
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition), border-color var(--transition), background-color var(--transition);
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    /* Layout Container */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+    }
+
+    /* Typography Utilities */
+    .font-serif {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section-kicker {
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 48px;
+      }
+    }
+
+    /* Section 1: Hero */
+    .hero-section {
+      padding-top: 56px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .hero-section {
+        padding-top: 88px;
+        padding-bottom: 96px;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 60px;
+      }
+    }
+
+    .hero-kicker-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 4.25rem;
+      }
+    }
+
+    .hero-offer {
+      font-size: 1.125rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+
+    .hero-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+      font-size: 0.9375rem;
+      color: var(--text-main);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-meta-item svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: background-color var(--transition), transform var(--transition);
+      box-shadow: none;
+    }
+
+    .hero-cta-btn:hover {
+      background-color: var(--accent-hover);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .hero-cta-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Minimal Geometric SVG Illustration */
+    .hero-art-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-art-card {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1 / 1;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      position: relative;
+    }
+
+    .hero-svg-art {
+      width: 100%;
+      height: 100%;
+      color: var(--text-main);
+    }
+
+    .art-steam-path {
+      animation: steamFloat 3.6s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    .art-steam-path-delay {
+      animation: steamFloat 4.2s ease-in-out 1.2s infinite;
+      transform-origin: center bottom;
+    }
+
+    .art-bean {
+      transition: transform 300ms ease-out;
+    }
+
+    @keyframes steamFloat {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.45;
+      }
+      50% {
+        transform: translateY(-7px);
+        opacity: 0.85;
+      }
+    }
+
+    /* Section 2: Interactive Menu */
+    .menu-section {
+      padding-top: 64px;
+      padding-bottom: 72px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .menu-section {
+        padding-top: 96px;
+        padding-bottom: 104px;
+      }
+    }
+
+    .menu-header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .menu-header-row {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 40px;
+      }
+      .menu-header-row .section-title {
+        margin-bottom: 0;
+      }
+    }
+
+    /* Menu Tabs */
+    .menu-tabs {
+      display: inline-flex;
+      background-color: var(--card);
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      gap: 4px;
+    }
+
+    .tab-btn {
+      padding: 8px 18px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 4px;
+      transition: color var(--transition), background-color var(--transition);
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.is-active {
+      background-color: #FAF7F2;
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(31, 27, 24, 0.05);
+    }
+
+    /* Menu Panels */
+    .menu-panel {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 200ms ease-out, transform 200ms ease-out;
+    }
+
+    .menu-panel.is-active {
+      display: block;
+    }
+
+    .menu-panel.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-items-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .menu-items-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 32px;
+      }
+    }
+
+    .menu-item-card {
+      padding: 16px 20px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+
+    .menu-item-card:hover {
+      background-color: var(--card-hover);
+      border-color: rgba(31, 27, 24, 0.12);
+    }
+
+    .menu-item-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .menu-item-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .menu-item-price {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .menu-item-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .menu-item-meta {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .menu-item-volume {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* Section 3: Atmosphere & Advantages */
+    .advantages-section {
+      padding-top: 64px;
+      padding-bottom: 72px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .advantages-section {
+        padding-top: 96px;
+        padding-bottom: 104px;
+      }
+    }
+
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .advantages-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+    }
+
+    .advantage-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+
+    .advantage-card:hover {
+      background-color: var(--card-hover);
+      border-color: rgba(31, 27, 24, 0.12);
+    }
+
+    .advantage-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      background-color: #FAF7F2;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .advantage-title {
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      font-weight: 500;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .advantage-desc {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Section 4: Location & Contacts (Footer) */
+    .footer-section {
+      padding-top: 64px;
+      padding-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-section {
+        padding-top: 96px;
+        padding-bottom: 64px;
+      }
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    @media (min-width: 860px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .contact-value {
+      font-size: 1.0625rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .contact-phone-link {
+      font-family: var(--font-serif);
+      font-size: 1.625rem;
+      font-weight: 500;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .contact-phone-link:hover {
+      color: var(--accent);
+    }
+
+    /* Messenger buttons */
+    .messenger-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .messenger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.875rem;
+      color: var(--text-main);
+      transition: border-color var(--transition), color var(--transition), background-color var(--transition);
+    }
+
+    .messenger-btn svg {
+      color: var(--accent);
+    }
+
+    .messenger-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: var(--card-hover);
+    }
+
+    /* Map Stub Card */
+    .map-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 320px;
+    }
+
+    .map-visual {
+      background-color: #FAF7F2;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      flex-grow: 1;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-schematic-svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.9;
+    }
+
+    .map-route-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--text-main);
+      color: #FAF7F2;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background-color var(--transition);
+    }
+
+    .map-route-btn svg {
+      color: var(--accent);
+    }
+
+    .map-route-btn:hover {
+      background-color: #2D2723;
+      color: #FAF7F2;
+    }
+
+    /* Sub-footer line */
+    .site-subfooter {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 640px) {
+      .site-subfooter {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    /* Scroll Reveal (Intersection Observer) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .art-steam-path, .art-steam-path-delay {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Блок 1: Шапка и первый экран (Hero) -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content reveal">
+            <div class="hero-kicker-wrap">
+              <span class="hero-kicker-dot"></span>
+              <span>Белгород · ТЦ «Солнечный»</span>
+            </div>
+
+            <h1 class="hero-title">SunCoffee</h1>
+
+            <p class="hero-offer">
+              Кофе свежей обжарки и ремесленная выпечка.<br>
+              Готовим за три минуты, чтобы вы сохраняли свой темп.
+            </p>
+
+            <div class="hero-meta-list">
+              <div class="hero-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 21s-6-5.333-6-10a6 6 0 0 1 12 0c0 4.667-6 10-6 10z"/>
+                  <circle cx="12" cy="11" r="2.5"/>
+                </svg>
+                <span>ул. Конева, 2, ТЦ «Солнечный», 1 этаж</span>
+              </div>
+              <div class="hero-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>Ежедневно с 10:00 до 21:00</span>
+              </div>
+            </div>
+
+            <div>
+              <a href="#menu" class="hero-cta-btn">
+                <span>Посмотреть меню</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <polyline points="19 12 12 19 5 12"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Минималистичная геометрическая SVG-иллюстрация -->
+          <div class="hero-art-wrapper reveal">
+            <div class="hero-art-card">
+              <svg class="hero-svg-art" id="heroSvgArt" viewBox="0 0 280 280" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <!-- Тонкая фоновая геометрическая сетка -->
+                <circle cx="140" cy="140" r="115" stroke="rgba(31, 27, 24, 0.06)" stroke-dasharray="2 4"/>
+                <circle cx="140" cy="140" r="75" stroke="rgba(31, 27, 24, 0.05)"/>
+                <line x1="140" y1="15" x2="140" y2="265" stroke="rgba(31, 27, 24, 0.04)"/>
+                <line x1="15" y1="140" x2="265" y2="140" stroke="rgba(31, 27, 24, 0.04)"/>
+
+                <!-- Пар над чашкой -->
+                <path class="art-steam-path" d="M125 90 C122 80 128 72 125 60" stroke="#C86D3B" opacity="0.65"/>
+                <path class="art-steam-path-delay" d="M140 86 C137 76 143 68 140 56" stroke="#C86D3B" opacity="0.75"/>
+                <path class="art-steam-path" d="M155 90 C152 80 158 72 155 60" stroke="#C86D3B" opacity="0.65"/>
+
+                <!-- Чашка -->
+                <path d="M90 105 H190 V155 C190 182 168 204 140 204 C112 204 90 182 90 155 Z" stroke="#1F1B18"/>
+                <!-- Ручка чашки -->
+                <path d="M190 115 C208 115 218 128 218 144 C218 160 206 170 190 170" stroke="#1F1B18"/>
+                <!-- Блюдце -->
+                <path d="M72 216 H208" stroke="#1F1B18"/>
+                <path d="M88 222 H192" stroke="#1F1B18" opacity="0.4"/>
+
+                <!-- Линия кофе внутри -->
+                <line x1="102" y1="125" x2="178" y2="125" stroke="#C86D3B" stroke-dasharray="3 3"/>
+
+                <!-- Летающие зерна кофе -->
+                <g class="art-bean art-bean-1" id="artBean1">
+                  <ellipse cx="68" cy="85" rx="11" ry="8" transform="rotate(-30 68 85)" stroke="#C86D3B"/>
+                  <path d="M64 78 Q71 85 66 92" stroke="#C86D3B"/>
+                </g>
+
+                <g class="art-bean art-bean-2" id="artBean2">
+                  <ellipse cx="218" cy="80" rx="10" ry="7" transform="rotate(25 218 80)" stroke="#1F1B18"/>
+                  <path d="M214 74 Q220 80 216 86" stroke="#1F1B18"/>
+                </g>
+
+                <g class="art-bean art-bean-3" id="artBean3">
+                  <ellipse cx="76" cy="180" rx="9" ry="6" transform="rotate(40 76 180)" stroke="#1F1B18" opacity="0.6"/>
+                  <path d="M73 175 Q78 180 75 185" stroke="#1F1B18" opacity="0.6"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блок 2: Меню (интерактивное) -->
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="menu-header-row reveal">
+          <div>
+            <p class="section-kicker">Меню</p>
+            <h2 class="section-title">Напитки и выпечка</h2>
+          </div>
+
+          <!-- Табы категорий -->
+          <div class="menu-tabs" role="tablist" aria-label="Категории меню">
+            <button class="tab-btn is-active" role="tab" id="tab-btn-classic" aria-selected="true" aria-controls="panel-classic">Классика</button>
+            <button class="tab-btn" role="tab" id="tab-btn-signature" aria-selected="false" aria-controls="panel-signature">Авторское</button>
+            <button class="tab-btn" role="tab" id="tab-btn-pastry" aria-selected="false" aria-controls="panel-pastry">Выпечка</button>
+          </div>
+        </div>
+
+        <!-- Таб 1: Классика -->
+        <div class="menu-panel is-active is-visible" id="panel-classic" role="tabpanel" aria-labelledby="tab-btn-classic">
+          <div class="menu-items-grid">
+            <article class="menu-item-card reveal">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Эспрессо</h3>
+                <span class="menu-item-price tabular">140 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">100% арабика, ноты темного шоколада и ореха</p>
+                <span class="menu-item-volume">30 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card reveal">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Американо</h3>
+                <span class="menu-item-price tabular">160 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Двойной эспрессо на подготовленной воде</p>
+                <span class="menu-item-volume">200 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card reveal">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Капучино</h3>
+                <span class="menu-item-price tabular">190 / 230 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Шелковистая текстура взбитого молока</p>
+                <span class="menu-item-volume">250 / 350 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card reveal">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Латте</h3>
+                <span class="menu-item-price tabular">220 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Мягкий молочный кофе с легкой пенкой</p>
+                <span class="menu-item-volume">350 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card reveal">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Флэт Уайт</h3>
+                <span class="menu-item-price tabular">210 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Насыщенный двойной шот и тонкий слой микропены</p>
+                <span class="menu-item-volume">200 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card reveal">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Фильтр-кофе</h3>
+                <span class="menu-item-price tabular">180 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Свежий урожай Эфиопии, чистый ягодный профиль</p>
+                <span class="menu-item-volume">250 мл</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Таб 2: Авторское -->
+        <div class="menu-panel" id="panel-signature" role="tabpanel" aria-labelledby="tab-btn-signature">
+          <div class="menu-items-grid">
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Раф Кедровый</h3>
+                <span class="menu-item-price tabular">280 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Сливки, натуральный сироп кедрового ореха, корица</p>
+                <span class="menu-item-volume">300 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Латте Соленая карамель</h3>
+                <span class="menu-item-price tabular">270 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Карамель собственного приготовления, морская соль</p>
+                <span class="menu-item-volume">350 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Бамбл Цитрус</h3>
+                <span class="menu-item-price tabular">290 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Двойной эспрессо, апельсиновый сок, тростниковый сахар</p>
+                <span class="menu-item-volume">300 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Сырный раф</h3>
+                <span class="menu-item-price tabular">290 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Крем-чиз, сливки, легкие ноты мускатного ореха</p>
+                <span class="menu-item-volume">300 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Чай Облепиха с розмарином</h3>
+                <span class="menu-item-price tabular">240 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Ягоды алтайской облепихи, свежий розмарин, мед</p>
+                <span class="menu-item-volume">400 мл</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Матча Латте</h3>
+                <span class="menu-item-price tabular">260 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Японская церемониальная матча на кокосовом молоке</p>
+                <span class="menu-item-volume">300 мл</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Таб 3: Выпечка -->
+        <div class="menu-panel" id="panel-pastry" role="tabpanel" aria-labelledby="tab-btn-pastry">
+          <div class="menu-items-grid">
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Круассан классический</h3>
+                <span class="menu-item-price tabular">160 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Французское слоеное тесто на сливочном масле 82.5%</p>
+                <span class="menu-item-volume">75 г</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Круассан с миндалем</h3>
+                <span class="menu-item-price tabular">220 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Запеченный франжипан, лепестки обжаренного миндаля</p>
+                <span class="menu-item-volume">120 г</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Каннеле бордо</h3>
+                <span class="menu-item-price tabular">130 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Карамелизованная хрустящая корочка и нежная сердцевина</p>
+                <span class="menu-item-volume">60 г</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Печенье с темным шоколадом</h3>
+                <span class="menu-item-price tabular">140 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Бельгийский шоколад 70%, кристаллы морской соли</p>
+                <span class="menu-item-volume">85 г</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Банановый кекс с пеканом</h3>
+                <span class="menu-item-price tabular">170 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Сочный бисквит из спелых бананов, дробленый пекан</p>
+                <span class="menu-item-volume">110 г</span>
+              </div>
+            </article>
+
+            <article class="menu-item-card">
+              <div class="menu-item-top">
+                <h3 class="menu-item-name">Паштел-де-ната</h3>
+                <span class="menu-item-price tabular">150 ₽</span>
+              </div>
+              <div class="menu-item-bottom">
+                <p class="menu-item-meta">Португальская тарталетка с заварным ванильным кремом</p>
+                <span class="menu-item-volume">70 г</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блок 3: Атмосфера и преимущества -->
+    <section class="advantages-section" id="advantages">
+      <div class="container">
+        <p class="section-kicker reveal">Принципы</p>
+        <h2 class="section-title reveal">Качество в деталях</h2>
+
+        <div class="advantages-grid">
+          <!-- Карточка 1 -->
+          <article class="advantage-card reveal">
+            <div class="advantage-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="12" rx="8" ry="10"/>
+                <path d="M12 2a15 15 0 0 1 0 20"/>
+              </svg>
+            </div>
+            <h3 class="advantage-title">Свежее зерно</h3>
+            <p class="advantage-desc">
+              Используем 100% арабику свежей обжарки. Каждое утро калибруем помол и время экстракции под текущую влажность и температуру.
+            </p>
+          </article>
+
+          <!-- Карточка 2 -->
+          <article class="advantage-card reveal">
+            <div class="advantage-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 3h12l1 7H5L6 3Z"/>
+                <path d="M5 10v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9"/>
+                <line x1="10" y1="14" x2="14" y2="14"/>
+              </svg>
+            </div>
+            <h3 class="advantage-title">Быстрый заказ с собой</h3>
+            <p class="advantage-desc">
+              Готовим напиток за 3 минуты. Напишите нам в WhatsApp или позвоните заранее, и ваш кофе будет ждать вас горячим к назначенному времени.
+            </p>
+          </article>
+
+          <!-- Карточка 3 -->
+          <article class="advantage-card reveal">
+            <div class="advantage-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <path d="M9 21V9"/>
+              </svg>
+            </div>
+            <h3 class="advantage-title">ТЦ «Солнечный»</h3>
+            <p class="advantage-desc">
+              Первый этаж у центрального входа. Удобный доступ без долгих переходов, просторная парковка торгового центра прямо перед зданием.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блок 4: Локация и контакты (Footer) -->
+    <footer class="footer-section" id="contacts">
+      <div class="container">
+        <p class="section-kicker reveal">Контакты</p>
+        <h2 class="section-title reveal">Как нас найти</h2>
+
+        <div class="footer-grid">
+          <!-- Контактная информация -->
+          <div class="contact-details reveal">
+            <div class="contact-group">
+              <span class="contact-label">Адрес кофейни</span>
+              <p class="contact-value">Белгород, улица Конева, 2<br>ТЦ «Солнечный», 1 этаж</p>
+            </div>
+
+            <div class="contact-group">
+              <span class="contact-label">График работы</span>
+              <p class="contact-value">Ежедневно с 10:00 до 21:00</p>
+            </div>
+
+            <div class="contact-group">
+              <span class="contact-label">Телефон для связи</span>
+              <a href="tel:+79155238448" class="contact-phone-link">+7 915 523-84-48</a>
+            </div>
+
+            <div class="contact-group">
+              <span class="contact-label">Быстрый заказ</span>
+              <div class="messenger-buttons">
+                <a href="https://wa.me/79155238448" class="messenger-btn" target="_blank" rel="noopener noreferrer">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                  </svg>
+                  <span>Написать в WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Стилизованная интерактивная карточка карты -->
+          <div class="map-card reveal">
+            <div class="map-visual">
+              <svg class="map-schematic-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Схема расположения кофейни SunCoffee">
+                <!-- Фон карты -->
+                <rect width="400" height="240" fill="#F7F3EB"/>
+
+                <!-- Сетка улиц -->
+                <!-- ул. Конева -->
+                <path d="M-10 170 L410 110" stroke="#E3DBD0" stroke-width="24"/>
+                <path d="M-10 170 L410 110" stroke="#ECE5DA" stroke-width="16"/>
+                <!-- перекрестная улица -->
+                <path d="M280 -10 L190 250" stroke="#E3DBD0" stroke-width="20"/>
+                <path d="M280 -10 L190 250" stroke="#ECE5DA" stroke-width="14"/>
+
+                <!-- Кварталы / застройка вокруг -->
+                <rect x="30" y="30" width="100" height="90" rx="3" fill="#EAE2D7" stroke="rgba(31,27,24,0.04)"/>
+                <rect x="150" y="20" width="80" height="80" rx="3" fill="#EAE2D7" stroke="rgba(31,27,24,0.04)"/>
+                <rect x="40" y="190" width="110" height="40" rx="3" fill="#EAE2D7" stroke="rgba(31,27,24,0.04)"/>
+
+                <!-- ТЦ «Солнечный» (контур здания) -->
+                <rect x="195" y="80" width="85" height="60" rx="4" fill="#E2D7C7" stroke="rgba(31,27,24,0.1)"/>
+                <text x="237" y="105" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="9" fill="#6E655F" font-weight="500">ТЦ «Солнечный»</text>
+                <text x="237" y="118" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="8" fill="#6E655F">1 этаж</text>
+
+                <!-- Название улицы -->
+                <text x="75" y="152" font-family="'Manrope', sans-serif" font-size="9" fill="#8C837C" transform="rotate(-8 75 152)">ул. Конева</text>
+
+                <!-- Маркер кофейни SunCoffee -->
+                <g transform="translate(230, 68)">
+                  <circle cx="0" cy="0" r="14" fill="rgba(200, 109, 59, 0.15)"/>
+                  <circle cx="0" cy="0" r="8" fill="#C86D3B"/>
+                  <circle cx="0" cy="0" r="3" fill="#FFFFFF"/>
+                </g>
+
+                <!-- Подпись маркера -->
+                <rect x="190" y="38" width="80" height="20" rx="3" fill="#1F1B18"/>
+                <text x="230" y="52" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="9.5" fill="#FAF7F2" font-weight="500">SunCoffee</text>
+              </svg>
+            </div>
+
+            <a href="https://yandex.ru/maps/?text=%D0%91%D0%B5%D0%BB%D0%B3%D0%BE%D1%80%D0%BE%D0%B4,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%9A%D0%BE%D0%BD%D0%B5%D0%B2%D0%B0,+2" class="map-route-btn" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+              </svg>
+              <span>Построить маршрут на картах</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="site-subfooter">
+          <span>© SunCoffee, Белгород. Уютный кофе каждый день.</span>
+          <span>ТЦ «Солнечный», ул. Конева, 2, ежедневно с 10:00 до 21:00</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Vanilla JS: интерактивные табы, Intersection Observer, анимация SVG -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Интерактивные табы меню с плавной анимацией
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabPanels = document.querySelectorAll('.menu-panel');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          if (button.classList.contains('is-active')) return;
+          const targetPanelId = button.getAttribute('aria-controls');
+
+          tabButtons.forEach(btn => {
+            btn.classList.remove('is-active');
+            btn.setAttribute('aria-selected', 'false');
+          });
+
+          tabPanels.forEach(panel => {
+            panel.classList.remove('is-active', 'is-visible');
+          });
+
+          button.classList.add('is-active');
+          button.setAttribute('aria-selected', 'true');
+
+          const activePanel = document.getElementById(targetPanelId);
+          if (activePanel) {
+            activePanel.classList.add('is-active');
+            void activePanel.offsetWidth;
+            requestAnimationFrame(() => {
+              activePanel.classList.add('is-visible');
+            });
+          }
+        });
+      });
+
+      // 2. Плавное появление блоков при скролле (Intersection Observer)
+      const revealElements = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -40px 0px',
+          threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+      } else {
+        revealElements.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // 3. Тонкий параллакс для зерен кофе в иллюстрации при прокрутке
+      const bean1 = document.getElementById('artBean1');
+      const bean2 = document.getElementById('artBean2');
+      const bean3 = document.getElementById('artBean3');
+
+      let ticking = false;
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollY < 600) {
+              const delta = scrollY * 0.04;
+              if (bean1) bean1.style.transform = `translateY(${delta}px)`;
+              if (bean2) bean2.style.transform = `translateY(${-delta * 0.8}px)`;
+              if (bean3) bean3.style.transform = `translateY(${delta * 0.6}px)`;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>
